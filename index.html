@@ -3,125 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Well Soon My Princess ❤️</title>
+<title>Get Well Soon My Princess</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at 30% 30%, #ff9fc3, #ff3366 70%), radial-gradient(circle at 70% 70%, #ffccff, #ff66aa 70%);
-    background-blend-mode: screen;
+body{
+margin:0;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
+font-family:Poppins;
 }
 
-.heart-container {
-    position: relative;
-    width: 350px;
-    height: 350px;
-    animation: rotate 12s linear infinite;
+/* floating hearts background */
+
+.heart-bg{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:0;
 }
 
-@keyframes rotate {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+.heart-bg span{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:float 10s linear infinite;
 }
 
-.heart-text span {
-    position: absolute;
-    font-weight: bold;
-    color: #fff;
-    font-size: 20px;
+@keyframes float{
+0%{transform:translateY(100vh) scale(0.5);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
 }
 
-.main-message {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
-    font-size: 3em;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 10px #ff66aa;
-    animation: fadeIn 2s ease-in-out forwards;
+/* main container */
+
+.container{
+position:relative;
+text-align:center;
+z-index:2;
 }
 
-@keyframes fadeIn {
-    0% {opacity: 0; transform: scale(0.5);}
-    100% {opacity: 1; transform: scale(1);}
+/* heart shape */
+
+.heart{
+position:relative;
+width:320px;
+height:300px;
+margin:auto;
 }
 
-.lines {
-    position: absolute;
-    bottom: 5%;
-    width: 80%;
-    text-align: center;
-    font-size: 1.5em;
-    font-family: 'Pacifico', cursive;
-    color: #ffe6f0;
-    line-height: 1.6;
+.heart span{
+position:absolute;
+font-size:18px;
+font-weight:bold;
+color:#ff0055;
+animation:pulse 2s infinite;
 }
 
-.lines span {
-    display: inline-block;
-    opacity: 0;
-    animation: popUp 1s forwards;
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.3)}
+100%{transform:scale(1)}
 }
 
-@keyframes popUp {
-    0% {opacity: 0; transform: translateY(30px) rotate(-5deg);}
-    100% {opacity: 1; transform: translateY(0) rotate(0deg);}
+/* title */
+
+.title{
+font-size:50px;
+color:#fff;
+text-shadow:0 0 15px #ff4d88;
+font-family:'Great Vibes',cursive;
+margin-bottom:20px;
+animation:fade 3s ease;
 }
+
+/* message */
+
+.message{
+font-family:'Great Vibes',cursive;
+font-size:30px;
+color:#fff;
+line-height:1.8;
+margin-top:30px;
+}
+
+.message span{
+display:block;
+opacity:0;
+animation:show 1s forwards;
+}
+
+.message span:nth-child(1){animation-delay:1s}
+.message span:nth-child(2){animation-delay:2s}
+.message span:nth-child(3){animation-delay:3s}
+.message span:nth-child(4){animation-delay:4s}
+.message span:nth-child(5){animation-delay:5s}
+.message span:nth-child(6){animation-delay:6s}
+
+@keyframes show{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes fade{
+from{opacity:0;transform:scale(.8)}
+to{opacity:1}
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="heart-container">
-    <div class="heart-text" id="heart"></div>
+<div class="heart-bg" id="bg"></div>
+
+<div class="container">
+
+<div class="title">Get Well Soon My Princess ❤️</div>
+
+<div class="heart" id="heart"></div>
+
+<div class="message">
+<span>You are my strong lady.</span>
+<span>Your smile is stronger than any pain.</span>
+<span>Even when you are weak, you shine.</span>
+<span>The world becomes beautiful because of you.</span>
+<span>Rest well, my princess.</span>
+<span>Your headache guy is always cheering for you.</span>
 </div>
 
-<div class="main-message">Get Well Soon My Princess ❤️</div>
-
-<div class="lines">
-    <span>You are my strong lady.</span><br>
-    <span>Even when clouds appear,</span><br>
-    <span>Your smile brightens everything.</span><br>
-    <span>Keep shining, keep fighting,</span><br>
-    <span>I’m always by your side.</span><br>
-    <span>Love surrounds you endlessly.</span>
 </div>
 
 <script>
-const heartContainer = document.getElementById('heart');
-const nameText = "SOMI ";
-const size = 350;
-const points = 250;
 
-for(let i=0; i<points; i++){
-    const t = i/points * 2 * Math.PI;
-    const x = size/2 * 16 * Math.pow(Math.sin(t),3)/17 + size/2;
-    const y = -size/2 * (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t))/17 + size/2;
-    const span = document.createElement('span');
-    span.innerText = nameText[i % nameText.length];
-    span.style.left = `${x}px`;
-    span.style.top = `${y}px`;
-    span.style.fontSize = `${16 + Math.random()*10}px`;
-    span.style.color = `hsl(${Math.random()*360}, 80%, 70%)`;
-    heartContainer.appendChild(span);
+/* floating hearts */
+
+const bg=document.getElementById("bg")
+
+for(let i=0;i<30;i++){
+let heart=document.createElement("span")
+heart.innerHTML="❤"
+heart.style.left=Math.random()*100+"%"
+heart.style.fontSize=(15+Math.random()*25)+"px"
+heart.style.animationDuration=(5+Math.random()*10)+"s"
+bg.appendChild(heart)
 }
 
-// Animate lines one by one
-const lines = document.querySelectorAll('.lines span');
-lines.forEach((line, index) => {
-    line.style.animationDelay = `${index*0.5 + 1}s`;
-});
+/* SOMI heart shape */
+
+const container=document.getElementById("heart")
+const word="Somi"
+
+let points=250
+let size=140
+
+for(let i=0;i<points;i++){
+
+let t=i/points*2*Math.PI
+
+let x=16*Math.pow(Math.sin(t),3)
+let y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t)
+
+let span=document.createElement("span")
+
+span.innerText=word[i%word.length]
+
+span.style.left=(size+x*8+150)+"px"
+span.style.top=(size-y*8+20)+"px"
+
+container.appendChild(span)
+
+}
+
 </script>
 
 </body>
 </html>
+
+
 
 
