@@ -15,12 +15,12 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ff5f9e,#ffc3a0,#ffdde1);
+background:linear-gradient(135deg,#ff5f9e,#ffc3a0,#ffd6e7);
 overflow:hidden;
 font-family:'Montserrat',sans-serif;
 }
 
-/* glowing romantic background */
+/* glowing particles */
 
 body:before{
 content:"";
@@ -29,10 +29,10 @@ width:200%;
 height:200%;
 background:radial-gradient(circle,#ffffff33 2px,transparent 2px);
 background-size:40px 40px;
-animation:moveBg 40s linear infinite;
+animation:bgMove 40s linear infinite;
 }
 
-@keyframes moveBg{
+@keyframes bgMove{
 0%{transform:translate(0,0)}
 100%{transform:translate(-200px,-200px)}
 }
@@ -41,63 +41,76 @@ animation:moveBg 40s linear infinite;
 
 .container{
 text-align:center;
-position:relative;
 z-index:2;
 }
 
 /* title */
 
 .title{
-font-size:42px;
+font-size:44px;
 font-family:'Playfair Display',serif;
 color:white;
 margin-bottom:40px;
-text-shadow:0 5px 20px rgba(0,0,0,0.3);
+text-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 /* heart */
 
 .heart{
-width:320px;
-height:320px;
-position:relative;
+width:340px;
+height:340px;
 margin:auto;
-animation:heartRotate 12s linear infinite;
+position:relative;
+animation:rotateHeart 12s linear infinite;
 }
 
-@keyframes heartRotate{
+@keyframes rotateHeart{
 0%{transform:rotate(0deg)}
 100%{transform:rotate(360deg)}
 }
 
 .heart span{
 position:absolute;
+color:#ff004f;
 font-weight:600;
-color:#ff0055;
-font-size:18px;
+font-size:16px;
 }
 
-/* typing text */
+/* typing message */
 
 .typing{
 margin-top:50px;
 font-size:28px;
-font-weight:600;
 color:white;
+font-weight:600;
 border-right:3px solid white;
 white-space:nowrap;
 overflow:hidden;
 width:0;
-animation:typing 4s steps(25,end) forwards, blink .8s infinite;
+animation:typing 10s steps(120,end) forwards, blink .8s infinite;
 }
 
 @keyframes typing{
 from{width:0}
-to{width:320px}
+to{width:700px}
 }
 
 @keyframes blink{
 50%{border-color:transparent}
+}
+
+/* falling roses */
+
+.rose{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
 }
 
 </style>
@@ -105,37 +118,61 @@ to{width:320px}
 
 <body>
 
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9c2d4e1c45.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
 
 <div class="title">Get Well Soon My Princess ❤️</div>
 
 <div class="heart" id="heart"></div>
 
-<div class="typing">You are my strong lady.</div>
+<div class="typing">
+You are my strong lady. Even when you are not feeling well, your spirit is beautiful and powerful. Your smile makes the world brighter for me. Rest well and recover soon, my princess. I believe in your strength and courage. I love you and I am always cheering for you.
+</div>
 
 </div>
 
 <script>
 
-const heart = document.getElementById("heart")
-const text = "Somi "
-const points = 220
-const scale = 11
+/* heart made from I Love You */
+
+const heart=document.getElementById("heart")
+const text="I Love You "
+const points=250
+const scale=11
 
 for(let i=0;i<points;i++){
 
-let t = i/points * 2*Math.PI
+let t=i/points*2*Math.PI
 
-let x = 16*Math.pow(Math.sin(t),3)
-let y = 13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t)
+let x=16*Math.pow(Math.sin(t),3)
+let y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t)
 
-let span = document.createElement("span")
-span.innerText = text[i % text.length]
+let span=document.createElement("span")
 
-span.style.left = (160 + x*scale) + "px"
-span.style.top = (160 - y*scale) + "px"
+span.innerText=text[i%text.length]
+
+span.style.left=(170+x*scale)+"px"
+span.style.top=(170-y*scale)+"px"
 
 heart.appendChild(span)
+
+}
+
+/* falling roses */
+
+for(let i=0;i<25;i++){
+
+let rose=document.createElement("div")
+rose.className="rose"
+rose.innerHTML="🌹"
+
+rose.style.left=Math.random()*100+"%"
+rose.style.animationDuration=(6+Math.random()*6)+"s"
+
+document.body.appendChild(rose)
 
 }
 
