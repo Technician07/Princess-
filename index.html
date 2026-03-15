@@ -3,103 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Well Soon My Princess</title>
+<title>Get Well Soon My Princess ❤️</title>
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background: radial-gradient(circle at center, #ffe6f0, #ff99cc);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Arial', sans-serif;
-        overflow: hidden;
-        color: #fff;
-    }
-    .heart-container {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        animation: rotate 10s linear infinite;
-    }
-    @keyframes rotate {
-        from {transform: rotate(0deg);}
-        to {transform: rotate(360deg);}
-    }
-    .heart-text {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        font-size: 18px;
-        font-weight: bold;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        transform-origin: center center;
-        color: #ff0066;
-    }
-    .message {
-        position: absolute;
-        top: 20%;
-        width: 100%;
-        text-align: center;
-        font-size: 2em;
-        font-weight: bold;
-        animation: fadeIn 2s ease-in-out forwards;
-    }
-    .lines {
-        position: absolute;
-        bottom: 10%;
-        width: 80%;
-        text-align: center;
-        font-size: 1.2em;
-        line-height: 1.6;
-        animation: slideUp 3s ease-in-out forwards;
-        opacity: 0;
-    }
-    @keyframes fadeIn {
-        0% {opacity: 0; transform: scale(0.5);}
-        100% {opacity: 1; transform: scale(1);}
-    }
-    @keyframes slideUp {
-        0% {opacity: 0; transform: translateY(50px);}
-        100% {opacity: 1; transform: translateY(0);}
-    }
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 30% 30%, #ff9fc3, #ff3366 70%), radial-gradient(circle at 70% 70%, #ffccff, #ff66aa 70%);
+    background-blend-mode: screen;
+}
+
+.heart-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    animation: rotate 12s linear infinite;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.heart-text span {
+    position: absolute;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+}
+
+.main-message {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 10px #ff66aa;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0; transform: scale(0.5);}
+    100% {opacity: 1; transform: scale(1);}
+}
+
+.lines {
+    position: absolute;
+    bottom: 5%;
+    width: 80%;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Pacifico', cursive;
+    color: #ffe6f0;
+    line-height: 1.6;
+}
+
+.lines span {
+    display: inline-block;
+    opacity: 0;
+    animation: popUp 1s forwards;
+}
+
+@keyframes popUp {
+    0% {opacity: 0; transform: translateY(30px) rotate(-5deg);}
+    100% {opacity: 1; transform: translateY(0) rotate(0deg);}
+}
 </style>
 </head>
 <body>
-    <div class="heart-container">
-        <div class="heart-text" id="heart"></div>
-    </div>
-    <div class="message">Get Well Soon My Princess ❤️</div>
-    <div class="lines">
-        You are strong, my princess.<br>
-        Even when the world feels heavy,<br>
-        Your smile lights up everything.<br>
-        Keep shining, keep smiling,<br>
-        I’m always here for you.<br>
-        Love surrounds you always.
-    </div>
+
+<div class="heart-container">
+    <div class="heart-text" id="heart"></div>
+</div>
+
+<div class="main-message">Get Well Soon My Princess ❤️</div>
+
+<div class="lines">
+    <span>You are my strong lady.</span><br>
+    <span>Even when clouds appear,</span><br>
+    <span>Your smile brightens everything.</span><br>
+    <span>Keep shining, keep fighting,</span><br>
+    <span>I’m always by your side.</span><br>
+    <span>Love surrounds you endlessly.</span>
+</div>
 
 <script>
-    const heartContainer = document.getElementById('heart');
-    const text = "LOVE ";
-    const size = 300;
-    const points = 200;
+const heartContainer = document.getElementById('heart');
+const nameText = "SOMI ";
+const size = 350;
+const points = 250;
 
-    for(let i=0; i<points; i++){
-        const t = i/points * 2 * Math.PI;
-        const x = size/2 * 16 * Math.pow(Math.sin(t), 3)/17 + size/2;
-        const y = -size/2 * (13 * Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t))/17 + size/2;
-        const span = document.createElement('span');
-        span.innerText = text[i % text.length];
-        span.style.position = 'absolute';
-        span.style.left = `${x}px`;
-        span.style.top = `${y}px`;
-        heartContainer.appendChild(span);
-    }
+for(let i=0; i<points; i++){
+    const t = i/points * 2 * Math.PI;
+    const x = size/2 * 16 * Math.pow(Math.sin(t),3)/17 + size/2;
+    const y = -size/2 * (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t))/17 + size/2;
+    const span = document.createElement('span');
+    span.innerText = nameText[i % nameText.length];
+    span.style.left = `${x}px`;
+    span.style.top = `${y}px`;
+    span.style.fontSize = `${16 + Math.random()*10}px`;
+    span.style.color = `hsl(${Math.random()*360}, 80%, 70%)`;
+    heartContainer.appendChild(span);
+}
+
+// Animate lines one by one
+const lines = document.querySelectorAll('.lines span');
+lines.forEach((line, index) => {
+    line.style.animationDelay = `${index*0.5 + 1}s`;
+});
 </script>
+
 </body>
 </html>
+
+
